@@ -2,5 +2,9 @@
   "name": "backend_pricefinder",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^4.13.0",
+    "prisma": "^4.13.0"
+  }
 }
