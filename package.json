@@ -14,6 +14,7 @@
     "prisma": "^4.13.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "sucrase": "^3.32.0"
   }
 }
