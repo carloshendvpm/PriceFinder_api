@@ -1,4 +1,4 @@
-import express from 'express'
+const express = require('express')
 import cors from 'cors'
 import dotenv from 'dotenv'
 import routes from './routes'
@@ -9,7 +9,7 @@ const app = express();
 app.use(cors())
 app.use(express.json())
 
-routes(app);
+routes(app)
 
 app.listen(process.env.PORT || 3000)
 console.log('server on port', process.env.PORT)
