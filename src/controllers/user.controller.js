@@ -1,4 +1,4 @@
-import { createUser } from "../repositories/user.repository";
+import { createUser, getAll } from "../repositories/user.repository";
 import { userValidation } from "../validations/user.validation";
 import bcrypt from "bcrypt";
 
@@ -12,5 +12,14 @@ export const create = async (req, res) => {
     res.status(200).send(user);
   } catch(err){
     res.status(400).send(err);
+  }
+}
+
+export const get = async (req, res) => {
+  try{
+    const users = await getAll()
+    res.status(200).send(users)
+  }catch(err){
+    res.status(400).send(err)
   }
 }
