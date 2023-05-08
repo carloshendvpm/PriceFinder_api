@@ -1,4 +1,4 @@
-import { createUser, getAll, getById, updateUser } from "../repositories/user.repository";
+import { createUser, getAll, getById, updateUser, deleteUser } from "../repositories/user.repository";
 import { userValidation } from "../validations/user.validation";
 import bcrypt from "bcrypt";
 
@@ -36,6 +36,14 @@ export const update = async (req, res) => {
   try {
     const user = await updateUser(Number(req.params.id), req.body)
     res.status(200).send(user)
+  } catch(err) {
+    res.status(400).send(err)
+  }
+}
+export const remove = async (req, res) => {
+  try {
+    await deleteUser(Number(req.params.id))
+    res.status(200).send()
   } catch(err) {
     res.status(400).send(err)
   }
