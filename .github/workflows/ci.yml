@@ -10,7 +10,7 @@ on:
     branches: [ "master" ]
 
 env:
-  DATABASE_URL: postgresql://pguser:pgpassword@db:5435/pricefinder?schema=public
+  DATABASE_URL: postgresql://pguser:pgpassword@db:5432/pricefinder?schema=public
 
 jobs:
   build:
