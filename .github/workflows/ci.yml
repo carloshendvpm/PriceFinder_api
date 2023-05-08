@@ -14,17 +14,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:13
-        env:
-          POSTGRES_USER: ${{ secrets.PG_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.PG_USER }}
-          POSTGRES_DB: ${{ secrets.DB_NAME }}
-        ports:
-          - 5435:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
@@ -39,7 +28,7 @@ jobs:
         sudo curl -L
         sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
         sudo chmod +x /usr/local/bin/docker-compose
-        
+
     - name: Start PostgreSQL with Docker Compose
       run: docker-compose up -d
 
@@ -54,12 +43,12 @@ jobs:
 
     - name: Setup Prisma
       env:
-        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        DATABASE_URL: postgresql://pguser:pgpassword@localhost:5435/pricefinder?schema=public
       run: yarn prisma generate
 
     - name: Run tests
       env:
-        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        DATABASE_URL: postgresql://pguser:pgpassword@localhost:5435/pricefinder?schema=public
       run: yarn test
 
     - name: Build
