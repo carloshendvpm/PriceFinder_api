@@ -5,13 +5,12 @@ name: CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "testes" ]
   pull_request:
     branches: [ "master" ]
 
 env:
-  DATABASE_URL: postgresql://pguser:pgpassword@localhost:5435/pricefinder?schema=public
-
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
 jobs:
   build:
 
@@ -20,27 +19,33 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: ./.github/worflows/docker-compose
-    - name: Start PostgreSQL with Docker 
-      run: docker-compose up -d
+    - name: Download Docker-Compose plugin
+      shell: bash
+      run: curl -SL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+    - name: Make Docker-Compose executable
+      shell: bash
+      run: sudo chmod +x /usr/local/bin/docker-compose
 
     - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
+    - uses: isbang/compose-action@v1.4.1
+      with:
+        compose-file: "./docker-compose.yml"
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
+      with: 
+        node-version: 16.x
+    - name: Run install
+      uses: borales/actions-yarn@v4
       with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Install dependencies
-      run: yarn install
-
-    - name: Setup Prisma
+        cmd: install
+    - name: Prisma generate
       run: yarn prisma generate
-
-    - name: Run tests
-      run: yarn test
-
-    - name: Build
-      run: yarn build
+    - name: Prisma migrate
+      run: yarn prisma migrate dev
+    - name: Test the app
+      uses: borales/actions-yarn@v4
+      with:
+        cmd: test
