@@ -43,7 +43,8 @@ jobs:
       uses: borales/actions-yarn@v4
       with:
         cmd: install
-
+    - name: Prisma generate
+      run: yarn prisma generate
     - name: Test the app
       uses: borales/actions-yarn@v4
       with:
