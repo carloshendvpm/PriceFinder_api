@@ -9,6 +9,9 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  DATABASE_URL: postgresql://pguser:pgpassword@localhost:5435/pricefinder?schema=public
+
 jobs:
   build:
 
@@ -42,13 +45,9 @@ jobs:
       run: yarn install
 
     - name: Setup Prisma
-      env:
-        DATABASE_URL: postgresql://pguser:pgpassword@localhost:5435/pricefinder?schema=public
       run: yarn prisma generate
 
     - name: Run tests
-      env:
-        DATABASE_URL: postgresql://pguser:pgpassword@localhost:5435/pricefinder?schema=public
       run: yarn test
 
     - name: Build
