@@ -45,6 +45,8 @@ jobs:
         cmd: install
     - name: Prisma generate
       run: yarn prisma generate
+    - name: Prisma migrate
+      run: yarn prisma migrate up
     - name: Test the app
       uses: borales/actions-yarn@v4
       with:
