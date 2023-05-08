@@ -1,5 +1,6 @@
 {
+  "watch": "src/**/*.ts",
   "execMap": {
-    "js":"node -r sucrase/register"
+    "ts": "ts-node"
   }
 }
