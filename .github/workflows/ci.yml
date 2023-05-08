@@ -31,6 +31,10 @@ jobs:
       run: sudo chmod +x /usr/local/bin/docker-compose
 
     - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
+    - uses: isbang/compose-action@v1.4.1
+      with:
+        compose-file: "./docker-compose.yml"
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with: 
