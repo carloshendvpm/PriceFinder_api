@@ -10,9 +10,9 @@ services:
     volumes:
       - ./banco-pricefinder:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: pricefinder
-      POSTGRES_USER: pguser
-      POSTGRES_PASSWORD: pgpassword
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
 
 volumes: 
   banco-pricefinder:
