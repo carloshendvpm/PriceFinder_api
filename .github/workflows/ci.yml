@@ -5,7 +5,7 @@ name: CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "teste" ]
   pull_request:
     branches: [ "master" ]
 
@@ -23,7 +23,12 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: ./.github/worflows/docker-compose
+    - name: Download Docker-Compose plugin
+      shell: bash
+      run: curl -SL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+    - name: Make Docker-Compose executable
+      shell: bash
+      run: chmod +x /usr/local/bin/docker-compose
     - name: Start PostgreSQL with Docker 
       run: docker-compose up -d
 
