@@ -1,6 +1,6 @@
 import userRoutes from "./user.routes";
 
-const routes = (app) => {
+const routes = (app: any) => {
   userRoutes(app);
 }
 
