@@ -4,12 +4,13 @@ services:
   db-pricefinder:
     image: postgres:alpine
     ports:
-      - "5435:5432"
+      - "5432:5432"
     container_name: "db-pg-pricefinder"
     restart: always
     volumes:
       - ./banco-pricefinder:/var/lib/postgresql/data
     environment:
+      POSTGRES_DB: pricefinder
       POSTGRES_USER: pguser
       POSTGRES_PASSWORD: pgpassword
 
