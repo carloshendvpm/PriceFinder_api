@@ -29,8 +29,6 @@ jobs:
     - name: Make Docker-Compose executable
       shell: bash
       run: sudo chmod +x /usr/local/bin/docker-compose
-    - name: Start PostgreSQL with Docker 
-      run: docker-compose up -d
 
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
