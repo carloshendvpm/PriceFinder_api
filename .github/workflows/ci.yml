@@ -23,17 +23,8 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-
-    - name: Install docker compose
-      run: |
-        echo $DATABASE_URL
-        sudo apt-get update
-        sudo apt-get install -y curl
-        sudo curl -L
-        sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-        sudo chmod +x /usr/local/bin/docker-compose
-
-    - name: Start PostgreSQL with Docker Compose
+    - uses: ./.github/worflows/docker-compose
+    - name: Start PostgreSQL with Docker 
       run: docker-compose up -d
 
     - uses: actions/checkout@v3
