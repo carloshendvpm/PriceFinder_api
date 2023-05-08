@@ -10,8 +10,7 @@ on:
     branches: [ "master" ]
 
 env:
-  DATABASE_URL: postgresql://pguser:pgpassword@localhost:5432/pricefinder?schema=public
-
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
 jobs:
   build:
 
@@ -20,7 +19,6 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - name: Download Docker-Compose plugin
