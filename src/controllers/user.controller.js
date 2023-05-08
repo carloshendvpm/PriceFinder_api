@@ -1,11 +1,10 @@
-import { createUser, getAll } from "../repositories/user.repository";
+import { createUser, getAll, getById } from "../repositories/user.repository";
 import { userValidation } from "../validations/user.validation";
 import bcrypt from "bcrypt";
 
 export const create = async (req, res) => {
   try {
-    await userValidation.validate(req.body)
-
+    await userValidation.validate(req.body);
     const hashPass = await bcrypt.hash(req.body.password, 10);
     req.body.password = hashPass;
     const user = await createUser(req.body);
@@ -21,5 +20,14 @@ export const get = async (req, res) => {
     res.status(200).send(users)
   }catch(err){
     res.status(400).send(err)
+  }
+}
+
+export const getId = async (req, res) => {
+  try {
+    const user = await getById(Number(req.params.id))
+    res.status(200).send(user)
+  } catch(err) {
+    res.status(400).send(e)
   }
 }
