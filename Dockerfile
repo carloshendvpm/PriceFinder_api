@@ -1,13 +1,17 @@
-FROM node:16-alpine
+FROM node
 
-WORKDIR /app
+WORKDIR /usr/app
 
 COPY package*.json ./
 
-RUN yarn install
+RUN npm install
+
+RUN npm i -g prisma
 
 COPY . .
 
+RUN prisma generate --schema ./prisma/schema.prisma
+
 EXPOSE 3000
 
-CMD [ "yarn", "dev" ]
+CMD [ "npm", "run", "dev"]
