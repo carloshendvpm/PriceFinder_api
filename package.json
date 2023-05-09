@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/index.ts",
-    "test": "jest"
+    "dev": "nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node ./src/index.ts\"",
+    "test": "jest",
+    "build":"tsc"
   },
   "dependencies": {
     "@prisma/client": "^4.13.0",
