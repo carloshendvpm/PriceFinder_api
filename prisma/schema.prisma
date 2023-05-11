@@ -11,34 +11,48 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  name String
-  email String @unique
-  password String
-  phone String?
-  cpf String @unique
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  phone     String?
+  cpf       String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("users")
 }
+
 model Product {
-  id Int @id @default(autoincrement())
-  name String
-  description String
-  category String
-  image String?
-  ean String @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id              Int               @id @default(autoincrement())
+  name            String
+  description     String
+  category        String
+  image           String?
+  ean             String            @unique
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  ProductCategory ProductCategory[]
 
   @@map("products")
 }
+
 model Category {
-  id Int @id @default(autoincrement())
-  name String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id              Int               @id @default(autoincrement())
+  name            String
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  ProductCategory ProductCategory[]
 
   @@map("categories")
+}
+
+model ProductCategory {
+  id         Int      @id @default(autoincrement())
+  productId  Int
+  product    Product  @relation(fields: [productId], references: [id])
+  categoryId Int
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  @@map("products_categories")
 }
