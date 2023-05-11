@@ -21,7 +21,7 @@ export const get = async (req: Request, res: Response) => {
 
 export const getId = async (req: Request, res: Response) => {
   try {
-    const product = await getById(Number(req.params.productId))
+    const product = await getById(Number(req.params.id))
     res.status(200).send(product)
   } catch(err) {
     res.status(400).send(err)
