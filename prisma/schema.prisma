@@ -34,3 +34,11 @@ model Product {
 
   @@map("products")
 }
+model Category {
+  id Int @id @default(autoincrement())
+  name String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("categories")
+}
