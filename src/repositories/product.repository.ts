@@ -9,7 +9,8 @@ export const createProduct = async(data: Product) => {
       name:true,
       description:true,
       category:true,
-      image:true
+      image:true,
+      ean: true
     }
   })
   return product
@@ -21,7 +22,8 @@ export const getAll = async() => {
       name:true,
       description:true,
       category:true,
-      image:true
+      image:true,
+      ean: true
     }
   })
   return product
@@ -34,7 +36,8 @@ export const getById = async(id: number) => {
       name:true,
       description:true,
       category:true,
-      image:true
+      image:true,
+      ean:true
     }
   })
   return product
@@ -50,7 +53,8 @@ export const updateProduct = async (id: number, data: Product) => {
       name:true,
       description:true,
       category:true,
-      image:true
+      image:true,
+      ean: true
     }
   })
   return product
