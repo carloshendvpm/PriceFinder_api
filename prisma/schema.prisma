@@ -55,3 +55,13 @@ model ProductCategory {
 
   @@map("products_categories")
 }
+
+model Market {
+  id        Int      @id @default(autoincrement())
+  name      String
+  cnpj      String?  @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("markets")
+}
