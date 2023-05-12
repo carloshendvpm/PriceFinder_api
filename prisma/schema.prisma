@@ -47,11 +47,11 @@ model Category {
 }
 
 model ProductCategory {
-  id         Int      @id @default(autoincrement())
-  productId  Int
-  product    Product  @relation(fields: [productId], references: [id])
-  categoryId Int
-  category   Category @relation(fields: [categoryId], references: [id])
+  id          Int      @id @default(autoincrement())
+  id_product  Int
+  product     Product  @relation(fields: [id_product], references: [id])
+  id_category Int
+  category    Category @relation(fields: [id_category], references: [id])
 
   @@map("products_categories")
 }
