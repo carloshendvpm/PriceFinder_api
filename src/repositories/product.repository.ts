@@ -1,5 +1,5 @@
 import { prisma } from "../services/prisma";
-import Product from "../types/product.types";
+import Product from "../interfaces/product.interface";
 
 export const createProduct = async(data: Product) => {
   const product = await prisma.product.create({
