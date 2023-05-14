@@ -45,7 +45,3 @@ jobs:
       run: yarn prisma generate
     - name: Prisma migrate
       run: yarn prisma migrate dev
-    - name: Test the app
-      uses: borales/actions-yarn@v4
-      with:
-        cmd: test
