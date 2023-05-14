@@ -12,8 +12,8 @@ export const create = async (req: Request, res: Response) => {
 
 export const get = async (req: Request, res: Response) => {
   try{
-    const products = await getAll()
-    res.status(200).send(products)
+    const category = await getAll()
+    res.status(200).send(category)
   }catch(err){
     res.status(400).send(err)
   }
