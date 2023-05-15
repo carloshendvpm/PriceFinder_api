@@ -134,4 +134,29 @@ describe("ProductController", () => {
       expect(res.send).toHaveBeenCalledWith(error);
     });
   });
+  describe("remove", () => {
+    it("should remove a product", async () => {
+      const productId = 1;
+      req.params = { id: productId.toString() };
+
+      await ProductController.remove(req, res);
+
+      expect(ProductService.deleteProduct).toHaveBeenCalledWith(productId);
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.send).toHaveBeenCalledWith();
+    });
+
+    it("should handle errors during remove", async () => {
+      const productId = 1;
+      const error = new Error("Remove error");
+      (ProductService.deleteProduct as jest.Mock).mockRejectedValue(error);
+      req.params = { id: productId.toString() };
+
+      await ProductController.remove(req, res);
+
+      expect(ProductService.deleteProduct).toHaveBeenCalledWith(productId);
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.send).toHaveBeenCalledWith(error);
+    });
+  });
 });
