@@ -1,7 +1,7 @@
-import { authenticate } from "../controllers/auth.controller";
+import AuthController from "../controllers/auth.controller";
 
 const authRoutes = (app: any) => {
-  app.post("/login", authenticate);
+  app.post("/login", AuthController.authenticate);
 }
 
 export default authRoutes
