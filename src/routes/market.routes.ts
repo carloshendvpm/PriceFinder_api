@@ -1,10 +1,10 @@
-import { create, get, getId, update, remove } from "../controllers/market.controller";
+import MarketController from "../controllers/market.controller";
 
 const marketRoutes = (app: any) => {
-  app.post("/market", create);
-  app.get("/market", get);
-  app.get("/market/:id", getId);
-  app.put("/market/:id", update);
-  app.delete("/market/:id", remove);
+  app.post("/market", MarketController.create);
+  app.get("/market", MarketController.get);
+  app.get("/market/:id", MarketController.getById);
+  app.put("/market/:id", MarketController.update);
+  app.delete("/market/:id", MarketController.remove);
 }
 export default marketRoutes;
