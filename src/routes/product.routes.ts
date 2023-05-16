@@ -1,5 +1,5 @@
 import productController from "../controllers/product.controller";
-import { verifyToken } from "../middlewares/auth";
+import auth from "../middlewares/auth";
 
 const productRoutes = (app: any) => {
   app.post("/product", productController.create);
