@@ -1,10 +1,10 @@
-import { create, get, getId, update, remove } from "../controllers/category.controller";
+import CategoryController from "../controllers/category.controller";
 
 const categoryRoutes = (app: any) => {
-  app.post("/category", create);
-  app.get("/category", get);
-  app.get("/category/:id", getId);
-  app.put("/category/:id", update);
-  app.delete("/category/:id", remove);
+  app.post("/category", CategoryController.create);
+  app.get("/category", CategoryController.get);
+  app.get("/category/:id", CategoryController.getById);
+  app.put("/category/:id", CategoryController.update);
+  app.delete("/category/:id", CategoryController.remove);
 }
 export default categoryRoutes;
