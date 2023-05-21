@@ -32,6 +32,8 @@ model Product {
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
   ProductCategory ProductCategory[]
+  id_market       Int
+  market          Market            @relation(fields: [id_market], references: [id])
 
   @@map("products")
 }
@@ -57,11 +59,12 @@ model ProductCategory {
 }
 
 model Market {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   name      String
-  cnpj      String?  @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  cnpj      String?   @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Products  Product[]
 
   @@map("markets")
 }
