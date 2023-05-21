@@ -34,6 +34,7 @@ model Product {
   ProductCategory ProductCategory[]
   id_market       Int
   market          Market            @relation(fields: [id_market], references: [id])
+  Price           Price[]
 
   @@map("products")
 }
@@ -70,6 +71,8 @@ model Market {
 }
 
 model Price {
-  id    Int   @id @default(autoincrement())
-  value Float
+  id            Int     @id @default(autoincrement())
+  value         Float
+  id_product    Int
+  product_price Product @relation(fields: [id_product], references: [id])
 }
