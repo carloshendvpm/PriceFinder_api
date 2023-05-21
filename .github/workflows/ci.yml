@@ -5,7 +5,7 @@ name: CI
 
 on:
   push:
-    branches: [ "master", "testes" ]
+    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
 
