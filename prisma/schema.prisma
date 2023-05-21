@@ -65,3 +65,8 @@ model Market {
 
   @@map("markets")
 }
+
+model Price {
+  id    Int   @id @default(autoincrement())
+  value Float
+}
