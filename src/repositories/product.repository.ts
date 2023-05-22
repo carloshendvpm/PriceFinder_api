@@ -4,13 +4,24 @@ import Product from "../interfaces/product.interface";
 class ProductService {
   async createProduct(data: Product) {
     const product = await prisma.product.create({
-      data,
+      data: {
+        name: data.name,
+        description: data.description,
+        image: data.image,
+        ean: data.ean,
+        market: {
+          connect: {
+            id: data.market_id
+          }
+        }
+      },
       select: {
         id: true,
         name: true,
         description: true,
         image: true,
-        ean: true
+        ean: true,
+        market: true
       }
     });
     return product;
