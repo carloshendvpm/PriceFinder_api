@@ -1,17 +1,27 @@
-FROM node
+# Defina a imagem base com a versão do Node.js
+FROM node:16-alpine
 
-WORKDIR /usr/app
+# Define o diretório de trabalho no container
+WORKDIR /usr/src/app
 
+# Copia o package.json e yarn.lock para a pasta de trabalho
 COPY package*.json ./
+COPY yarn*.lock ./
 
-RUN npm install
+# Instala o yarn e as dependências do projeto
+RUN yarn install
 
-RUN npm i -g prisma
-
+# Copia o resto dos arquivos para a pasta de trabalho
 COPY . .
 
-RUN prisma generate --schema ./prisma/schema.prisma
+# Compila o typescript para javascript
+RUN yarn build
 
+RUN npx prisma generate
+
+
+# Expõe a porta que a aplicação usa
 EXPOSE 3000
 
-CMD [ "npm", "run", "dev"]
+# Comando para executar a aplicação
+CMD [ "yarn", "dev" ]
