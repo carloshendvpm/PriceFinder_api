@@ -1,0 +1,44 @@
+name: CD
+on:
+  push:
+    branches: [ "master", "teste" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
+      - name: Build production bundle
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: build
+      - name: Test the app
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: test # will run `yarn test` command
+
+      - name: Deploy to EC2
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          source: "., !node_modules"
+          target: "test"
+  
+      - name: Restart NGINX
+        run: ssh -i ${{ secrets.SSH_KEY }} ${{secrets.SSH_USER}}@${{secrets.SSH_PORT}} "sudo service nginx restart"
