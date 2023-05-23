@@ -35,6 +35,3 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           source: "., !node_modules"
           target: "test"
-  
-      - name: Restart NGINX
-        run: ssh -i ${{ secrets.SSH_KEY }} ${{secrets.SSH_USER}}@${{secrets.SSH_PORT}} "sudo service nginx restart"
