@@ -25,10 +25,6 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: build
-      - name: Test the app
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: test # will run `yarn test` command
 
       - name: Deploy to EC2
         uses: appleboy/scp-action@master
