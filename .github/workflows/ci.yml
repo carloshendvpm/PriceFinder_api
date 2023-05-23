@@ -48,3 +48,9 @@ jobs:
       uses: borales/actions-yarn@v4
       with:
         cmd: test
+    - name: Action Discord Alert
+      if: always()
+      uses: ErnaneJ/action-discord-alerts@main
+      with:
+        webhook: ${{ secrets.DISCORD_WEBHOOK }}     
+        status: ${{ job.status }}
