@@ -1,7 +1,7 @@
 ![workflow](https://github.com/carloshendvpm/PriceFinder_api/actions/workflows/ci.yml/badge.svg)
 # PriceFinder
 
-PriceFinder is a Node.js API that allows the registration of supermarkets, products, product prices, and product categories. This project uses technologies such as Express, Prisma, Docker, Jest, and TypeScript. Continuous integration is handled through GitHub Actions.
+PriceFinder is a Node.js API that allows the registration of supermarkets, products, product prices, and product categories. This project uses technologies such as Express, Prisma, Docker, Jest, and TypeScript. Continuous integration is handled through GitHub Actions. The API is hosted on AWS(EC2).
 
 ## Technologies Used
 
