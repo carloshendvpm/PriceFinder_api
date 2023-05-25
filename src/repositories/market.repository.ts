@@ -10,9 +10,18 @@ class MarketService {
   }
 
   async getAll() {
-    const markets = await prisma.market.findMany();
+    const markets = await prisma.market.findMany({
+        include: {
+            Products: {
+                select: {
+                    id: true,
+                    name: true,
+                },
+            },
+        },
+    });
     return markets;
-  }
+}
 
   async getById(id: number) {
     const market = await prisma.market.findUnique({
