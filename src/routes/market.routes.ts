@@ -6,5 +6,6 @@ const marketRoutes = (app: any) => {
   app.get("/market/:id", MarketController.getById);
   app.put("/market/:id", MarketController.update);
   app.delete("/market/:id", MarketController.remove);
+  app.get("/market/:id/products", MarketController.getMarketsByProductId);
 }
 export default marketRoutes;

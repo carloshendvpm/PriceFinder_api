@@ -17,6 +17,7 @@ class MarketController {
       const markets = await MarketService.getAll();
       res.status(200).send(markets);
     } catch (err) {
+      console.log(err)
       res.status(400).send(err);
     }
   }
@@ -45,6 +46,15 @@ class MarketController {
       res.status(200).send();
     } catch (err) {
       res.status(400).send(err);
+    }
+  }
+    async getMarketsByProductId(req: Request, res: Response) {
+    const { id } = req.params;
+    try {
+      const products = await MarketService.getProductsByMarketId(Number(id));
+      res.status(200).send(products);
+    }catch(err){
+      res.status(500).send({message: err});
     }
   }
 }

@@ -47,6 +47,13 @@ class MarketService {
       },
     });
   }
+  async getProductsByMarketId(id: number) {
+    const market = await prisma.market.findUnique({
+      where: { id },
+      include: { Products: true },
+    });
+    return market?.Products || [];
+  }
 }
 
 export default new MarketService();
