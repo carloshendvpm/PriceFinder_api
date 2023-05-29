@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Test
+    name: CD
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -34,4 +34,4 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           source: "., !node_modules"
-          target: "test"
+          target: "pricefinder"
