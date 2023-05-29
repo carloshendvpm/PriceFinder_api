@@ -13,6 +13,18 @@ services:
       POSTGRES_DB: pricefinder
       POSTGRES_USER: pguser
       POSTGRES_PASSWORD: pgpassword
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    container_name: "app-pricefinder"
+    volumes:
+      - .:/usr/app
+    restart: always
+    depends_on:
+      - db-pricefinder
 
 volumes:
   banco-pricefinder:
