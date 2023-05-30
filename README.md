@@ -21,7 +21,7 @@ Before you begin, you will need to have the following tools installed on your ma
 
 - [Node.js](https://nodejs.org/en/download/)
 - [Docker](https://www.docker.com/products/docker-desktop)
-- [Yarn](https://yarnpkg.com/getting-started/install) or [NPM](https://www.npmjs.com/get-npm)
+- [Yarn](https://yarnpkg.com/getting-started/install) and [NPM](https://www.npmjs.com/get-npm)
 - [Nginx](https://nginx.org/en/download.html)
 - [AWS CLI](https://aws.amazon.com/cli/)
 
