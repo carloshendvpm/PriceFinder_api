@@ -1,8 +1,15 @@
 import { Request, Response } from "express";
+import { idSchema } from "../validations/product.validation";
 import ProductService from "../repositories/product.repository";
+import * as Yup from 'yup';
 
 class ProductController {
   async create(req: Request, res: Response) {
+    const { name, price, description,  } = req.body;
+
+    if (!name || !price || !description) {
+      return res.status(400).send({ message: "Missing product fields" });
+    }
     try {
       const product = await ProductService.createProduct(req.body);
       res.status(200).send(product);
@@ -10,7 +17,6 @@ class ProductController {
       res.status(400).send(err);
     }
   }
-
   async get(req: Request, res: Response) {
     try {
       const products = await ProductService.getAll();
@@ -22,9 +28,21 @@ class ProductController {
 
   async getById(req: Request, res: Response) {
     try {
-      const product = await ProductService.getById(Number(req.params.id));
+      const id = Number(req.params.id);
+  
+      await idSchema.validate(id);
+  
+      const product = await ProductService.getById(id);
+  
+      if (!product) {
+        return res.status(404).send("Product not found");
+      }
+  
       res.status(200).send(product);
     } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        return res.status(400).send(err);
+      }
       res.status(400).send(err);
     }
   }
