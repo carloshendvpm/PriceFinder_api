@@ -9,11 +9,6 @@ class ProductService {
         description: data.description,
         image: data.image,
         ean: data.ean,
-        Price:{
-          create: {
-            value: data.price,
-          }
-        },
         market: {
           connect: {
             id: data.market_id
@@ -39,9 +34,7 @@ class ProductService {
         name: true,
         description: true,
         image: true,
-        ean: true,
-        market: true,
-        Price: true
+        ean: true
       },
     });
     return products;
@@ -72,8 +65,7 @@ class ProductService {
         name: true,
         description: true,
         image: true,
-        ean: true,
-        Price: true
+        ean: true
       }
     });
     return product;
