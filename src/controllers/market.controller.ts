@@ -7,7 +7,6 @@ class MarketController {
       const market = await MarketService.createMarket(req.body);
       res.status(200).send(market);
     } catch (err) {
-      console.log(err)
       res.status(400).send(err);
     }
   }
@@ -17,7 +16,6 @@ class MarketController {
       const markets = await MarketService.getAll();
       res.status(200).send(markets);
     } catch (err) {
-      console.log(err)
       res.status(400).send(err);
     }
   }
