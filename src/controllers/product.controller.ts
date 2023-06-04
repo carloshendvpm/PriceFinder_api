@@ -5,9 +5,9 @@ import * as Yup from 'yup';
 
 class ProductController {
   async create(req: Request, res: Response) {
-    const { name, price, description,  } = req.body;
+    const { name, description } = req.body;
 
-    if (!name || !price || !description) {
+    if (!name || !description) {
       return res.status(400).send({ message: "Missing product fields" });
     }
     try {
