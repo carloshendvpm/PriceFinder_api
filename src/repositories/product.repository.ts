@@ -22,8 +22,8 @@ class ProductService {
         description: true,
         image: true,
         ean: true,
-        market: true,
-        price: true
+        price: true,
+        market: true
       }
     });
     return product;
@@ -36,9 +36,8 @@ class ProductService {
         name: true,
         description: true,
         image: true,
-        ean: true,
-        market: true,
-        price: true
+        price: true,
+        ean: true
       },
     });
     return products;
@@ -52,8 +51,8 @@ class ProductService {
         name: true,
         description: true,
         image: true,
-        ean: true,
         price: true,
+        ean: true
       },
     });
     return product;
@@ -70,8 +69,7 @@ class ProductService {
         name: true,
         description: true,
         image: true,
-        ean: true,
-        price: true,
+        ean: true
       }
     });
     return product;
